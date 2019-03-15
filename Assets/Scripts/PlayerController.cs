@@ -8,8 +8,20 @@ public class PlayerController : MonoBehaviour {
     public float movementSpeed;
     public Animator myAnimator;
 
+    public static PlayerController instance; //using this to make sure only one player character loads up and exists.
+
+    public string areaTransitionName; 
+
     // Use this for initialization
     void Start () {
+        if(instance == null)
+        {
+            instance = this;  //the instance value will be set to this player ONLY. 
+        } else
+        {
+            Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 

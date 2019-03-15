@@ -181,8 +181,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9144930824288618052, guid: 2ae689a33aa8620489fd8edb2d82cf62,
         type: 3}
-      propertyPath: areaToLoad
-      value: Test
+      propertyPath: areaTransitionName
+      value: Countryside-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 996513407, guid: 2ae689a33aa8620489fd8edb2d82cf62, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 996513407, guid: 2ae689a33aa8620489fd8edb2d82cf62, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ae689a33aa8620489fd8edb2d82cf62, type: 3}
