@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour {
 
     public static PlayerController instance; //using this to make sure only one player character loads up and exists.
 
-    public string areaTransitionName; 
+    public string areaTransitionName;
+    private Vector3 bottomLeftLimit;
+    private Vector3 topRightLimit; 
 
     // Use this for initialization
     void Start () {
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour {
             instance = this;  //the instance value will be set to this player ONLY. 
         } else
         {
+            if(instance != this)
             Destroy(gameObject);
         }
 
@@ -35,5 +38,17 @@ public class PlayerController : MonoBehaviour {
             myAnimator.SetFloat ("lastMoveX", Input.GetAxisRaw ("Horizontal"));
             myAnimator.SetFloat ("lastMoveY", Input.GetAxisRaw ("Vertical"));
         }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x),
+                                         Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
+
     }
+
+    public void setBounds(Vector3 botLeft, Vector3 topRight)
+    {
+        bottomLeftLimit = botLeft + new Vector3(.4f, 1f, 0f);
+        topRightLimit = topRight + new Vector3(-.4f, -1f, 0f);
+    }
+    
+
 }

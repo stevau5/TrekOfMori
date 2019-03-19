@@ -38,6 +38,11 @@ public class CameraController : MonoBehaviour
         //clip the bounds of the camera to the edges of the map. 
         bottomLeftLimit = theMap.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
         topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
+
+
+        PlayerController.instance.setBounds(theMap.localBounds.min, theMap.localBounds.max);
+
+
     }
 
     // Update is called once per frame
