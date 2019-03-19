@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour {
 
     public string areaTransitionName;
     private Vector3 bottomLeftLimit;
-    private Vector3 topRightLimit; 
+    private Vector3 topRightLimit;
+
+    public bool canMove = true; 
 
     // Use this for initialization
     void Start () {
@@ -30,13 +32,21 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        theRB.velocity = movementSpeed * new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+
+        if (canMove) {
+            theRB.velocity = movementSpeed * new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        } else {
+            theRB.velocity = Vector2.zero;
+        }
+
         myAnimator.SetFloat ("MoveX", theRB.velocity.x);
         myAnimator.SetFloat ("MoveY", theRB.velocity.y);
 
         if (Input.GetAxisRaw ("Horizontal") == 1 || Input.GetAxisRaw ("Vertical") == 1 || Input.GetAxisRaw ("Vertical") == -1 || Input.GetAxisRaw ("Horizontal") == -1) {
-            myAnimator.SetFloat ("lastMoveX", Input.GetAxisRaw ("Horizontal"));
-            myAnimator.SetFloat ("lastMoveY", Input.GetAxisRaw ("Vertical"));
+            if (canMove) {
+                myAnimator.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+                myAnimator.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+            }
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x),
