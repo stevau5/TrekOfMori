@@ -36,7 +36,7 @@ public class DialogManager : MonoBehaviour {
 
                     if (currentLine >= dialogLines.Length) { //making sure we dont go out of bounds array
                         dialogBox.SetActive(false); // if we go over, take away the dialog box
-                        PlayerController.instance.canMove = true; // and allow our player to regain movement
+                        GameManager.instance.dialogActive = false ; // and allow our player to regain movement
 
                     }
                     else {
@@ -65,7 +65,9 @@ public class DialogManager : MonoBehaviour {
         dialogBox.SetActive(true); //set the dialog box as active. 
         justStarted = true;
         nameBox.SetActive(isPerson); //check if isPerson is t/f and set the name box accordingly. 
-        PlayerController.instance.canMove = false; //halt the player from moving while in chat. 
+
+
+        GameManager.instance.dialogActive = true; //halt the player from moving while in chat. 
 
     }
 
